@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username:
+    password:
+  docker:
+    compose:
+      enabled: true
+  application:
+    name: sistema de hospitalidade
+
+server:
+  port: 8080

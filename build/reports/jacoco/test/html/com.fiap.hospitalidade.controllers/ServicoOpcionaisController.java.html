@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServicoOpcionaisController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hospitalidade</a> &gt; <a href="index.source.html" class="el_package">com.fiap.hospitalidade.controllers</a> &gt; <span class="el_source">ServicoOpcionaisController.java</span></div><h1>ServicoOpcionaisController.java</h1><pre class="source lang-java linenums">package com.fiap.hospitalidade.controllers;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fiap.hospitalidade.modelos.Item;
+import com.fiap.hospitalidade.modelos.Servico;
+import com.fiap.hospitalidade.services.ItemService;
+import com.fiap.hospitalidade.services.ServicoService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/servico-opcionais&quot;)
+public class ServicoOpcionaisController {
+
+    private final ItemService itemService;
+
+    private final ServicoService servicoService;
+
+<span class="nc" id="L26">    public ServicoOpcionaisController(ItemService itemService, ServicoService servicoService) {</span>
+<span class="nc" id="L27">        this.itemService = itemService;</span>
+<span class="nc" id="L28">        this.servicoService = servicoService;</span>
+<span class="nc" id="L29">    }</span>
+
+    @GetMapping(&quot;/servicos&quot;)
+    public List&lt;Servico&gt; findAll() {
+<span class="nc" id="L33">        return servicoService.findAll();</span>
+    }
+
+    @GetMapping(&quot;/servicos/{id}&quot;)
+    public Servico findById(@PathVariable String id) {
+<span class="nc" id="L38">        return servicoService.findById(id);</span>
+    }
+
+    @PostMapping(&quot;/servicos&quot;)
+    public Servico save(Servico servico) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (servico.getId() != null) {</span>
+<span class="nc" id="L44">            throw new IllegalArgumentException(&quot;Id must be null&quot;);</span>
+        }
+<span class="nc" id="L46">        return servicoService.save(servico);</span>
+    }
+
+    @DeleteMapping(&quot;/servicos/{id}&quot;)
+    public void delete(String id) {
+<span class="nc" id="L51">        servicoService.delete(id);</span>
+<span class="nc" id="L52">    }</span>
+
+    @PutMapping(&quot;/servicos/{id}&quot;)
+    public Servico update(String id, Servico servico) {
+<span class="nc" id="L56">        return servicoService.update(id, servico);</span>
+    }
+
+    @GetMapping(&quot;/itens&quot;)
+    List&lt;Item&gt; findAllItens() {
+<span class="nc" id="L61">        return itemService.findAll();</span>
+    }
+
+    @GetMapping(&quot;/itens/{id}&quot;)
+    Item findByIdItem(@PathVariable String id) {
+<span class="nc" id="L66">        return itemService.findById(id);</span>
+    }
+
+    @PostMapping(&quot;/itens&quot;)
+    Item saveItem(Item item) {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (item.getId() != null) {</span>
+<span class="nc" id="L72">            throw new IllegalArgumentException(&quot;Id must be null&quot;);</span>
+        }
+<span class="nc" id="L74">        return itemService.save(item);</span>
+    }
+
+    @DeleteMapping(&quot;/itens/{id}&quot;)
+    void deleteItem(String id) {
+<span class="nc" id="L79">        itemService.delete(id);</span>
+<span class="nc" id="L80">    }</span>
+
+    @PutMapping(&quot;/itens/{id}&quot;)
+    Item updateItem(String id, Item item) {
+<span class="nc" id="L84">        return itemService.update(id, item);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
